@@ -80,22 +80,19 @@ function getSpotify(){
         searchTerm = "The Sign Ace of Base";
         console.log("searching for The Sign by Ace of Base");
 	}else{
-        // if there are search terms, use the userParameter that was formatted by our for loop
+
 		searchTerm = userParameters;
 	}
-	//execute the spotify search using the searchTerm
+
 	spotifyKeys.search({type:'track', query:searchTerm}, function(error,data){
 	    if(error){
 	        console.log(`error: ${error}`);
 	        return;
 	    }else{
-            // if no error was encountered, print the return data: 
+
 	  		console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
             console.log("Song Name: " + data.tracks.items[0].name);
 
-            // check to see if the preview URL returned is null. Spotify returns null for preview URL 
-            // when you query a song that is not available to stream in your region. If it is null, return 
-            // some information to that effect. If it's not null, return the preview URL
             if (data.tracks.items[0].preview_url == null){
                 console.log("Preview URL is not available - song is not available to stream in your region")
             }
